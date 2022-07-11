@@ -1,0 +1,1 @@
+/home/pi/hannah/lpbfFoam/THERMORAY/build/installed/lib/cmake/THERMORAY/libTHERMORAY.so

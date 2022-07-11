@@ -1,0 +1,7 @@
+/home/pi/hannah/lpbfFoam/THERMORAY/build/CMakeFiles/install/strip.dir
+/home/pi/hannah/lpbfFoam/THERMORAY/build/CMakeFiles/install/local.dir
+/home/pi/hannah/lpbfFoam/THERMORAY/build/CMakeFiles/install.dir
+/home/pi/hannah/lpbfFoam/THERMORAY/build/CMakeFiles/list_install_components.dir
+/home/pi/hannah/lpbfFoam/THERMORAY/build/CMakeFiles/rebuild_cache.dir
+/home/pi/hannah/lpbfFoam/THERMORAY/build/CMakeFiles/edit_cache.dir
+/home/pi/hannah/lpbfFoam/THERMORAY/build/CMakeFiles/THERMORAY.dir

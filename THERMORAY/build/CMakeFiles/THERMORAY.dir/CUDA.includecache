@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pi/hannah/lpbfFoam/THERMORAY/cuda_functions.cuh
+
+/home/pi/hannah/lpbfFoam/THERMORAY/hello.cu
+cuda_functions.cuh
+/home/pi/hannah/lpbfFoam/THERMORAY/cuda_functions.cuh
+iostream
+-
+

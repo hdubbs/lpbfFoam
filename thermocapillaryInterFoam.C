@@ -68,90 +68,95 @@ int main(int argc, char *argv[])
 
     #include "setRootCaseLists.H"
     #include "createTime.H"
-    #include "createDynamicFvMesh.H"
 
-    #include "initContinuityErrs.H"
-    #include "createDyMControls.H"
+    #include "cuda_functions.cuh"
 
-    #include "createFields.H"
-    #include "createFieldRefs.H"
+    helloWorld();
 
-    #include "initCorrectPhi.H"
-    #include "createUfIfPresent.H"
+    // #include "createDynamicFvMesh.H"
 
-    #include "createFvOptions.H"
-    #include "CourantNo.H"
-    #include "setInitialDeltaT.H"
+    // #include "initContinuityErrs.H"
+    // #include "createDyMControls.H"
 
-    turbulence->validate();
+    // #include "createFields.H"
+    // #include "createFieldRefs.H"
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+    // #include "initCorrectPhi.H"
+    // #include "createUfIfPresent.H"
 
-    Info<< "\nStarting time loop\n" << endl;
+    // #include "createFvOptions.H"
+    // #include "CourantNo.H"
+    // #include "setInitialDeltaT.H"
 
-    while (runTime.run())
-    {
-        #include "readDyMControls.H"
+    // turbulence->validate();
 
-        #include "CourantNo.H"
-        #include "alphaCourantNo.H"
-        #include "setDeltaT.H"
+    // // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-        ++runTime;
+    // Info<< "\nStarting time loop\n" << endl;
 
-        Info<< "Time = " << runTime.timeName() << nl << endl;
+    // while (runTime.run())
+    // {
+    //     #include "readDyMControls.H"
 
-        fluid.correctMassSources(T);
-        fluid.solve();
-        rho = fluid.rho();
+    //     #include "CourantNo.H"
+    //     #include "alphaCourantNo.H"
+    //     #include "setDeltaT.H"
 
-        // --- Pressure-velocity PIMPLE corrector loop
-        while (pimple.loop())
-        {
-            if (pimple.firstIter() || moveMeshOuterCorrectors)
-            {
-                mesh.update();
+    //     ++runTime;
 
-                if (mesh.changing())
-                {
-                    gh = (g & mesh.C()) - ghRef;
-                    ghf = (g & mesh.Cf()) - ghRef;
+    //     Info<< "Time = " << runTime.timeName() << nl << endl;
 
-                    if (correctPhi)
-                    {
-                        // Calculate absolute flux
-                        // from the mapped surface velocity
-                        phi = mesh.Sf() & Uf();
+        // fluid.correctMassSources(T);
+        // fluid.solve();
+        // rho = fluid.rho();
 
-                        #include "correctPhi.H"
+        // // --- Pressure-velocity PIMPLE corrector loop
+        // while (pimple.loop())
+        // {
+        //     if (pimple.firstIter() || moveMeshOuterCorrectors)
+        //     {
+        //         mesh.update();
 
-                        // Make the flux relative to the mesh motion
-                        fvc::makeRelative(phi, U);
-                    }
-                }
-            }
-            #include "UEqn.H"
-            #include "YEqns.H"
-            #include "TEqn.H"
+        //         if (mesh.changing())
+        //         {
+        //             gh = (g & mesh.C()) - ghRef;
+        //             ghf = (g & mesh.Cf()) - ghRef;
 
-            // --- Pressure corrector loop
-            while (pimple.correct())
-            {
-                #include "pEqn.H"
-            }
+        //             if (correctPhi)
+        //             {
+        //                 // Calculate absolute flux
+        //                 // from the mapped surface velocity
+        //                 phi = mesh.Sf() & Uf();
 
-            if (pimple.turbCorr())
-            {
-                turbulence->correct();
-            }
-        }
+        //                 #include "correctPhi.H"
 
-        rho = fluid.rho();
+        //                 // Make the flux relative to the mesh motion
+        //                 fvc::makeRelative(phi, U);
+        //             }
+        //         }
+        //     }
+        //     #include "UEqn.H"
+        //     #include "YEqns.H"
+        //     #include "TEqn.H"
 
-        runTime.write();
+        //     // --- Pressure corrector loop
+        //     while (pimple.correct())
+        //     {
+        //         #include "pEqn.H"
+        //     }
 
-        runTime.printExecutionTime(Info);
-    }
+        //     if (pimple.turbCorr())
+        //     {
+        //         turbulence->correct();
+        //     }
+        // }
+
+        // rho = fluid.rho();
+
+    //     runTime.write();
+
+    //     runTime.printExecutionTime(Info);
+    // }
 
     Info<< "End\n" << endl;
 

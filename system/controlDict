@@ -1,0 +1,66 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2106                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |       
+
+ THIS FILE IS HERE AS PART OF A COMPILATION TEST
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+//libs ( "libWENOEXT.so");
+//libs ("libCUDAraytracing.so" );
+libs ( "libTHERMORAY.so" );
+
+application     thermocapillaryInterFoam;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         0.12;
+
+deltaT          0.00002;
+
+writeControl    adjustable;
+
+writeInterval   0.001;
+
+purgeWrite      0;
+
+writeFormat     binary;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable yes;
+
+adjustTimeStep  no;
+
+maxDeltaT       1;
+
+maxCo           0.6;
+
+maxAlphaCo      0.5;
+
+maxAlphaDdt     2.3;
+
+maxDi           5e0;
+
+
+// ************************************************************************* //

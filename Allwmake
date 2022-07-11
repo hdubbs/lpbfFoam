@@ -4,7 +4,8 @@ cd "${0%/*}" || exit                                # Run from this directory
 #------------------------------------------------------------------------------
 
 echo "Building external libraries"
-./WENOEXT/Allwmake
+# ./WENOEXT/Allwmake
+./THERMORAY/Allwmake
 
 echo "Building application"
 wmake $targetType interfaceProperties
